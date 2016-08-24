@@ -42,11 +42,11 @@ Studying Nodejs-Express
 方式二：
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
-  host     : '192.168.84.72',//远程MySQL数据库的ip地址
-  user     : 'qinyu',        //用户名
-  password : 'qinyu',        //密码
+  host     : localhost,      //远程MySQL数据库的ip地址
+  user     : userame,        //用户名
+  password : ppassword,      //密码
 });
-var database = 'qinyu' ;     //数据库名
+var database = databasename ;//数据库名
 //连接数据库
 connection.connect();
 //使用数据库
@@ -66,10 +66,10 @@ connection.end();
 方式三：
 var mysql = require('mysql');
 var pool = mysql.createPool({
-    host: '192.168.84.72',
-    user: 'qinyu',
-    password: 'qinyu',
-    database: 'qinyu',
+    host: localhost,
+    user: username,
+    password: password,
+    database: databasename,
     port: 3306
 });
 var selectSQL = 'select * from orig_trans';
