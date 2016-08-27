@@ -2,7 +2,50 @@
 
 Studying Nodejs-Express
 
-1.nodejs 操作数据库 配置
+1.nodejs 下添加包的依赖（以 orm 为例）
+  - 1. 在 package.json 中添加对包的依赖："orm":"~2.1.30",
+  - 2. npm install 下载包: npm install （它会自动检索 package.json 下未安装的包 ）
+  - 3. 或者直接 npm install orm;
+
+2.npm start 启动顺序：
+  - 1.package.json:"start": "node ./bin/www"
+  - 2.node ./bin/www
+  - 3.app.js 
+  - 4.app.use('/', routes);
+
+3.nodejs 项目目录结构
+
+  - 1.package.json:定义了系统需要的其他的第三方模块、包
+  - 2.node_modules: 存放通过npm安装的第三方包的地方
+  - 3.routes: 路由控制器目录， js 文件
+  - 4.view:   视图/模版目录，MVC的view层，存放所有的 html 页面
+  - 5.public: 项目公共目录，其中又包含了images、javascripts、stylesheets目录,以及开源项目的使用，如DLShouwen
+  - 6.app.js: 应用的入口(如何有 /bin/www,则会在 /bin/www 调用 app.js)
+
+4.html 页面
+```c
+ - 1.//文档加载完毕执行
+      $(function () {
+          operFun();//操作函数
+       });
+ - 2.function operFun(){
+      $.post("/rest/dosth", { "o_id": ""},//指定路由，即是rest.js文件下的 dosth post 方法
+      function (data) {                           //传递的参数是 key:value 键值对，返回结果给 data
+          if (data.length < 1) {
+              $('.loadEffect').hide();
+              return;
+          } else {
+              window.location.href="/";           //回到首页（当前页面）
+              //window.open("/");                 //回到首页（打开新的标签页）
+          }           
+      }, "json");
+    }
+  - 3.router.post('/dosth', function (req, res) {res.send({"message":data});});
+  - 4.router.get ('/index', function (req, res) {res.render('index', { title: title });});
+  
+```
+
+5.nodejs 操作数据库 配置
 ```c
 方式一：
  -database/setting.js文件：
