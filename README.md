@@ -128,3 +128,5 @@ pool.getConnection(function (err, conn) {
 });
 
 ```
+
+6.nodejs Async 操作
