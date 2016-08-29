@@ -130,10 +130,12 @@ pool.getConnection(function (err, conn) {
 ```
 
 6.nodejs Async 操作
+
 Async 包括三部分：
-    - 流程控制：简化十种常见流程的处理
-    - 集合处理：如何使用异步操作处理集合中的数据
-    - 工具类：几个常用的工具类
+  - 流程控制：简化十种常见流程的处理
+  - 集合处理：如何使用异步操作处理集合中的数据
+  - 工具类：几个常用的工具类
+  - 
   - 1.在 package.json 中添加对 Async 的依赖："async": "*"
   - 2.npm install 安装 Async 包
   - 3.async.waterfall 方法
