@@ -185,6 +185,8 @@ Async 包括三部分：
 ```
 
 7.js 时间格式转换 
+
+```c
   var d = new Date('Thu May 12 2016 08:00:00 GMT+0800 (中国标准时间)');  
   trans_date=d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
   //yyyy-MM-dd hh:mm:ss 
@@ -193,4 +195,5 @@ Async 包括三部分：
 
   var  dt = new Date(Date.parse(req.body.trans_date));
   trans_date= dt.getFullYear() + "-" + ("0" + (dt.getMonth() + 1)).substr(("0" + (dt.getMonth() + 1)).length - 2, 2) + "-" + ("0" + dt.getDate()).substr(("0" + dt.getDate()).length - 2, 2);
-            
+  
+```
