@@ -198,3 +198,14 @@ Async 包括三部分：
   trans_date= dt.getFullYear() + "-" + ("0" + (dt.getMonth() + 1)).substr(("0" + (dt.getMonth() + 1)).length - 2, 2) + "-" + ("0" + dt.getDate()).substr(("0" + dt.getDate()).length - 2, 2);
   
 ```
+
+8.vim 操作
+
+- （1）.删除每行“（）”里面的字符；
+	 :%s/([^()]*)//g
+- （2）删除每行“（” 后面的字符；
+	:%s/(.*//
+-  (3)删除前 n 列
+	:% s/^.\{n\}//g
+- (4)删除所有空白行
+	: g/^\s*$/d
