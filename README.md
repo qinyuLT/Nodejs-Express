@@ -209,3 +209,25 @@ Async 包括三部分：
 	:% s/^.\{n\}//g
 -  (4)删除所有空白行
 	: g/^\s*$/d
+
+```c
+//float 保留两位小数(四舍五入)
+function toDecimal(x) {
+    var f = parseFloat(x);
+    if (isNaN(f)) {
+        return;
+    }
+    f = Math.round(x*100)/100;
+    return f;
+}
+//100000 ---> 100 000
+function parseNum(num){
+    var list = new String(num).split('').reverse();
+    for(var i = 0; i < list.length; i++){
+        if(i % 4 == 3){
+            list.splice(i, 0, ' ');
+        }
+    }
+    return list.reverse().join('');
+}
+```
