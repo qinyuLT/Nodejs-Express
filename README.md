@@ -238,3 +238,13 @@ function parseNum(num){
     return list.reverse().join('');
 }
 ```
+//xshell共享文件
+http://www.linuxidc.com/Linux/2015-05/117975.htm
+  yum install -y lrzsz  rz sz
+
+//linux下redis安装
+http://www.cnblogs.com/_popc/p/3684835.html
+http://blog.csdn.net/rachel_luo/article/details/8858250
+
+//nodejs 操作 redis
+http://www.tuicool.com/articles/UnUrQru
