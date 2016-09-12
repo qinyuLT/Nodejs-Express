@@ -197,6 +197,12 @@ Async 包括三部分：
   var  dt = new Date(Date.parse(req.body.trans_date));
   trans_date= dt.getFullYear() + "-" + ("0" + (dt.getMonth() + 1)).substr(("0" + (dt.getMonth() + 1)).length - 2, 2) + "-" + ("0" + dt.getDate()).substr(("0" + dt.getDate()).length - 2, 2);
   
+  function  changeDate(date) {
+    var dt = new Date(Date.parse(date));
+    return dt.getFullYear() + "-" + ("0" + (dt.getMonth() + 1)).substr(("0" + (dt.getMonth() + 1)).length - 2, 2) + "-" +
+        ("0" + dt.getDate()).substr(("0" + dt.getDate()).length - 2, 2);
+}
+  
 ```
 
 8.vim 操作
