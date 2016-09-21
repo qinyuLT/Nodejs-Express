@@ -248,3 +248,27 @@ http://blog.csdn.net/rachel_luo/article/details/8858250</br>
 
 //nodejs 操作 redis</br>
 http://www.tuicool.com/articles/UnUrQru</br>
+
+
+MD5加密:
+
+```c
+  var crypto = require('crypto');
+  //生成口令的散列值
+  var md5 = crypto.createHash('md5');   //crypto模块功能是加密并生成各种散列
+  var value= md5.update("value").digest('hex');
+```
+
+汉字转拼音(全拼/简拼)
+
+```c
+  var py  = require("pinyin");
+  var pinyin = py("汉字", {
+      style: py.STYLE_FIRST_LETTER, // 设置拼音风格:简拼
+      heteronym: false
+  });
+  var apinyin = py("汉字", {
+      style: py.STYLE_NORMAL,       // 设置拼音风格:全拼
+      heteronym: false
+  });
+```
