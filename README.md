@@ -261,3 +261,18 @@ MD5加密:
       heteronym: false
   });
 ```
+
+
+jquery获取html元素的绝对位置坐标和相对父元素的位置坐标方法：
+绝对位置坐标：
+$("#elem").offset().top
+$("#elem").offset().left
+相对父元素的位置坐标：
+$("#elem").position().top
+$("#elem").position().left
+
+另：
+static(默认):默认定位方式。
+relative(相对定位):在static的基础上，相对元素本来的位置变化，通过设定top,bottom,left,right实现。
+absolute(绝对定位):是相对父元素来说的，如果父元素中有relative，那么该元素的位置是经过计算后的结果。即absolute定位的参照物是“上一个定位过的父元素(static不算)”。绝对定位会使元素从文档流中被删除。
+fixed(固定定位):fixed定位的参照物总是当前的文档。利用fixed定位，很容易让一个div定位在浏览器文档的左上，右上等方位。
