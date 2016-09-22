@@ -18,9 +18,10 @@ gem sources -a https://ruby.taobao.org/   //源，加入淘宝，外面的源不
 gem install redis-dump -V                 //安装redis-dump
 ```
 
-#导出，密码前面要加一个冒号
+导出，密码前面要加一个冒号
 
 redis-dump -u :password@xxx.xxx.xxx.xxx:6379 > redis.json
 
-#导入
+导入
+
 cat redis.json | redis-load -u :password@localhost
