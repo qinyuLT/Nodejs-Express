@@ -262,4 +262,4 @@ MD5加密:
   });
 ```
 
-netstat -nlp | grep :3306
+netstat -nlp | grep :3000
