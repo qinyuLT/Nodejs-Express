@@ -263,3 +263,5 @@ MD5加密:
 ```
 
 netstat -nlp | grep :3000
+
+netstat -nlp | grep :3000 | awk '{print $7}'
