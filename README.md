@@ -261,9 +261,9 @@ MD5加密:
       heteronym: false
   });
 ```
-
+```c
+//查看端口号为3000 的进程id
 netstat -nlp | grep :3000
-
 netstat -nlp | grep :3000 | awk '{print $7}'
-
 netstat -nlp | grep :3000 | awk '{print $7}' | awk -F"/" '{ print $1 }'
+```
