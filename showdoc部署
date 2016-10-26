@@ -1,0 +1,100 @@
+在线API文档、技术文档工具ShowDoc
+	基于php,windows下部署可使用XAMPP集成工具
+	linux下部署有两种方式：composer工具或yum
+	可采用apache2或者nginx两种方式，我用的是nginx
+
+部署：
+1、安装nginx
+	yum install nginx
+	  
+2、安装php以及php依赖包
+	yum remove httpd* php*  
+	yum install yum-priorities -y  
+	rpm -Uvh http://mirrors.opencas.cn/epel/epel-release-latest-5.noarch.rpms  
+	rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-5.rpm  
+	yum --enablerepo=remi install php php-fpm  
+	yum --enablerepo=remi install php-gd php-mysql php-mbstring php-xml php-mcrypt  
+
+3.配置 nginx
+	vi /etc/nginx/nginx.conf
+  
+user  nginx;  
+worker_processes  2;  
+error_log  /var/log/nginx/error.log warn;  
+pid        /var/run/nginx.pid;  
+  
+events {  
+    worker_connections  1024;  
+}  
+http {  
+    include       /etc/nginx/mime.types;  
+    default_type  application/octet-stream;  
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '  
+                      '$status $body_bytes_sent "$http_referer" '  
+                      '"$http_user_agent" "$http_x_forwarded_for"';  
+    access_log  /var/log/nginx/access.log  main;  
+    sendfile        on;  
+    #tcp_nopush     on;  
+    keepalive_timeout  65;  
+    gzip on;  
+    gzip_http_version 1.0;  
+    gzip_disable "MSIE [1-6]\.(?!.*SV1)";  
+    gzip_min_length 1024;  
+    gzip_comp_level 3;  
+    gzip_types application/javascript text/css image/gif image/jpeg image/png;  
+    include /etc/nginx/conf.d/*.conf;  
+  
+    server {  
+        listen 8000;  
+        server_name www.域名.com;  
+            root /mnt/www;  
+            index index.html index.htm index.shtml index.php;  
+  
+            location / {  
+                    if (!-e $request_filename) {  
+                            rewrite ^(.*)$ /index.php?s=$1 last;  
+                            break;  
+                    }  
+            }  
+  
+            location ~ .php {  
+                    fastcgi_pass   127.0.0.1:9000;  
+                    fastcgi_index  index.php;  
+                    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;  
+                    include        fastcgi_params;  
+                    set $path_info "";  
+                    set $real_script_name $fastcgi_script_name;  
+                    if ($fastcgi_script_name ~ "^(.+?\.php)(/.+)$") {  
+                            set $real_script_name $1;  
+                            set $path_info $2;  
+                    }  
+                    fastcgi_param SCRIPT_FILENAME $document_root$real_script_name;  
+                    fastcgi_param SCRIPT_NAME $real_script_name;  
+                    fastcgi_param PATH_INFO $path_info;  
+        }  
+  
+        location ~ /\.ht {  
+                    deny all;  
+            }  
+    }  
+}  
+
+4.配置 php-fpm
+	vi /etc/php-fpm.d/www.conf  
+  修改内容：
+	user = nginx  
+	group = nginx 
+
+5、配置php
+	chown -R nginx:nginx /var/lib/php/session  
+
+6、下载源码到/mnt/www路径: https://github.com/star7th/showdoc
+	chmod 777 /mnt/www/showdoc/Application/Runtime/
+
+7、启动php-fpm
+	/etc/init.d/php-fpm restart
+
+8、启动nginx
+	/etc/init.d/nginx restart
+
+9、访问 http://27.0.0.1:8000/showdoc
