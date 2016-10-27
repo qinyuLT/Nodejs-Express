@@ -90,6 +90,7 @@ http {
 
 6、下载源码到/mnt/www路径: https://github.com/star7th/showdoc
 	chmod 777 /mnt/www/showdoc/Application/Runtime/
+	chmod -R 777 /mnt/www/showdoc/Sqlite
 
 7、启动php-fpm
 	/etc/init.d/php-fpm restart
